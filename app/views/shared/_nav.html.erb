@@ -1,0 +1,14 @@
+<div class="navigation-my-styles">
+  <div class="floating-box"><%= link_to 'Home', root_path %></div>
+  <div class="floating-box"><%= link_to 'About', about_path %></div>
+  <div class="floating-box"><%= link_to 'Contact', contact_path %></div>
+  <div class="floating-box"><%= link_to 'Quests', quests_path %></div>
+  <div class="floating-box"><%= link_to 'My Gear Closet', gears_path %></div>
+  <div class="floating-box"><% if current_user %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+          <%= link_to "Register", new_user_registration_path %>
+          <%= link_to "Login", new_user_session_path %>
+      <% end %>
+  </div class="floating-box">
+</div>
