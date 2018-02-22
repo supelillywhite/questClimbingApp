@@ -26,10 +26,16 @@
     <%= form.text_area :picture, id: :quest_picture %>
   </div>
 
-  <div class="field">
-    <%= form.label :gear %>
-    <%= form.text_field :gear, id: :quest_gear %>
+  <div>
+    <%= form.label :date %>
+    <%= form.date_field :date %>
   </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, id: :quest_location %>
+  </div>
+  
 
   <div>
     <%= form.collection_check_boxes :gear_ids, current_user.gears, :id, :title %>

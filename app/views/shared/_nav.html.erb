@@ -2,7 +2,7 @@
   <div class="floating-box"><%= link_to 'Home', root_path %></div>
   <div class="floating-box"><%= link_to 'About', about_path %></div>
   <div class="floating-box"><%= link_to 'Contact', contact_path %></div>
-  <div class="floating-box"><%= link_to 'Quests', quests_path %></div>
+  <div class="floating-box"><%= link_to 'My Quests', quests_path %></div>
   <div class="floating-box"><%= link_to 'My Gear Closet', gears_path %></div>
   <div class="floating-box"><% if current_user %>
     <%= link_to "Logout", destroy_user_session_path, method: :delete %>
@@ -11,4 +11,18 @@
         <%= link_to "Login", new_user_session_path %>
     <% end %>
   </div class="floating-box">
+  <div class="search-bar floating-box">
+    <%= form_tag(quests_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search ...", class: "search-field" %>
+      <%= submit_tag "Search", :name => nil, class: "search-button" %>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <% if current_user != nil %>
+    <p>Welcome <%= current_user.first_name %>!</p>
+  <% else %>
+    <p>Please log in!</p>
+  <% end %>
 </div>

@@ -8,7 +8,7 @@
       <th>Title</th>
       <th>Description</th>
       <th>Picture</th>
-      <th>Gear</th>
+      <th>Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
         <td><%= quest.title %></td>
         <td><%= quest.description %></td>
         <td><%= quest.picture %></td>
-        <td><%= quest.gear %></td>
+        <td><%= quest.date %></td>
         <td><%= link_to 'Show', quest %></td>
         <td><%= link_to 'Edit', edit_quest_path(quest) %></td>
         <td><%= link_to 'Destroy', quest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
