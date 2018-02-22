@@ -4,7 +4,7 @@ class QuestsController < ApplicationController
   # GET /quests
   # GET /quests.json
   def index
-    @quests = Quest.all
+    @quests = current_user.quests
   end
 
   # GET /quests/1
@@ -26,6 +26,8 @@ class QuestsController < ApplicationController
   def create
     @quest = Quest.new(quest_params)
     @quest.user_id = current_user.id
+
+    p @quest.inspect
 
     respond_to do |format|
       if @quest.save
@@ -70,6 +72,6 @@ class QuestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quest_params
-      params.require(:quest).permit(:title, :description, :picture, :gear, :user_id)
+      params.require(:quest).permit(:title, :description, :picture, :gear, :user_id, gear_ids:[], gear_attributes:[:title])
     end
 end

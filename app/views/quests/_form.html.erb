@@ -31,6 +31,10 @@
     <%= form.text_field :gear, id: :quest_gear %>
   </div>
 
+  <div>
+    <%= form.collection_check_boxes :gear_ids, current_user.gears, :id, :title %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
