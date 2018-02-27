@@ -12,7 +12,11 @@
 
 <p>
   <strong>Picture:</strong>
-  <%= @quest.picture %>
+  <% if @quest.picture != nil %>
+    <img src="<%= @quest.picture %>", alt="<%= @quest.picture %>", width="500px">
+  <% else %>
+    <p></p>
+  <% end %>
 </p>
 
 <p>
@@ -33,4 +37,5 @@
 </p>
 
 <%= link_to 'Edit', edit_quest_path(@quest) %> |
-<%= link_to 'Back', quests_path %>
+<%= link_to 'Back', quests_path %> |
+<%= link_to 'Destroy', quest_path(@quest), method: :delete, data: { confirm: 'Are you sure?' } %>

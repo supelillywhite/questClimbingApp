@@ -12,7 +12,11 @@
 
 <p>
   <strong>Picture:</strong>
-  <%= @gear.picture %>
+  <% if @gear.picture != nil %>
+    <img src="<%= @gear.picture %>", alt="<%= @gear.picture %>", width="500px">
+  <% else %>
+    <p></p>
+  <% end %>
 </p>
 
 <p>
@@ -21,4 +25,6 @@
 </p>
 
 <%= link_to 'Edit', edit_gear_path(@gear) %> |
-<%= link_to 'Back', gears_path %>
+<%= link_to 'Back', gears_path %> |
+<%= link_to 'Destroy', gear_path(@gear), method: :delete, data: { confirm: 'Are you sure?' } %>
+
