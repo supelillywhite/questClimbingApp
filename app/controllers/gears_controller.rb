@@ -5,6 +5,7 @@ class GearsController < ApplicationController
   # GET /gears.json
   def index
     @gears = current_user.gears
+    @categories = current_user.categories
   end
 
   # GET /gears/1
@@ -70,6 +71,6 @@ class GearsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gear_params
-      params.require(:gear).permit(:title, :description, :picture, :user_id, :date_purchased)
+      params.require(:gear).permit(:title, :description, :picture, :user_id, :date_purchased, category_ids:[], gear_attributes:[:category])
     end
 end

@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Category(s):</strong>
+  <% @gear.categories.each do |category| %>
+      <p><%= category.category %></p>
+  <% end %>
+</p>
+
+<p>
   <strong>Title:</strong>
   <%= @gear.title %>
 </p>

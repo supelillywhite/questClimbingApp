@@ -1,28 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Gears</h1>
+<p>
+  <strong>Category:</strong>
+  <%= @category.category %>
+</p>
 
-<div>
-  <%= link_to 'New Gear', new_gear_path %>
-</div>
-
-
-<div>
-  <h3>Categories</h3>
-  <div>
-    <%= link_to 'New Gear Category', new_category_path %>
-  </div>
-  <div>
-    <% @categories.each do |category| %>
-      <%= link_to "#{category.category}", category_path(category.id) %>
-    <% end %>
-  </div>
-</div>
-
-
-<div>
-  <% @gears.each do |gear| %>
-
+<p>
+  <% @category.gears.each do |gear| %>
     <hr>
     <div class="row row-line">
       <div class="col-md-2">
@@ -44,10 +28,8 @@
         <%= link_to 'Show', gear %>
       </div>
     </div>
-    
   <% end %>
+</p>
 
-</div>
-
-
-
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>

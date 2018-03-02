@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+  <div>
+    <%= form.label :category %>
+    <%= form.collection_check_boxes :category_ids, current_user.categories, :id, :category %>
+  </div>
+
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :gear_title %>
