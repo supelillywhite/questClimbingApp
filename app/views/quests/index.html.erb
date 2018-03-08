@@ -9,18 +9,21 @@
 </script>
 
 <div>
+  <% if @quests.size == 0 %>
+    <em>You have no quests yet!</em>
+  <% end %>
   <% @quests.each do |quest| %>
 
     <div class="row row-line">
       <div class="col-md-2">
         <p class="heading-weight">Title:</p>
-        <p><%= quest.title %></p>
+        <p><%= link_to quest.title, quest %></p>
       </div>
       <div class="col-md-3">
         <p class="heading-weight">Description:</p>
         <p><%= quest.description %></p> 
       </div>
-      <div class="col-md-5 pic-center">
+      <div class="col-md-6 pic-center">
         <% if quest.picture != nil %>
           <img src="<%= quest.picture %>", alt="<%= quest.picture %>", width="375px" class="image-border">
         <% else %>
@@ -30,9 +33,6 @@
       <div class="col-md-1 date-class">
         <p class="heading-weight">Date:</p>
         <p><%= quest.date %></p> 
-      </div>
-      <div class="col-md-1">
-        <%= link_to 'Show', quest %>
       </div>
     </div>
     

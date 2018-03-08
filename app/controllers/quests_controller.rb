@@ -1,33 +1,30 @@
 class QuestsController < ApplicationController
   before_action :set_quest, only: [:show, :edit, :update, :destroy]
+  before_action :check_auth, only: [:show, :edit, :update, :destroy]
 
-  # GET /quests
-  # GET /quests.json
   def index
-    @quests = current_user.quests
+    if user_signed_in?
+      @quests = current_user.quests
+    else
+      redirect_to(root_path,
+        notice: "Sorry, you must log in to view/edit a Quest")
+    end
   end
 
-  # GET /quests/1
-  # GET /quests/1.json
   def show
   end
 
-  # GET /quests/new
   def new
     @quest = Quest.new
   end
 
-  # GET /quests/1/edit
+
   def edit
   end
 
-  # POST /quests
-  # POST /quests.json
   def create
     @quest = Quest.new(quest_params)
     @quest.user_id = current_user.id
-
-    p @quest.inspect
 
     respond_to do |format|
       if @quest.save
@@ -40,8 +37,6 @@ class QuestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /quests/1
-  # PATCH/PUT /quests/1.json
   def update
     respond_to do |format|
       if @quest.update(quest_params)
@@ -54,8 +49,6 @@ class QuestsController < ApplicationController
     end
   end
 
-  # DELETE /quests/1
-  # DELETE /quests/1.json
   def destroy
     @quest.destroy
     respond_to do |format|
@@ -65,12 +58,18 @@ class QuestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_quest
       @quest = Quest.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def check_auth
+      if session[:user_id] != @quest.user_id
+        redirect_to(quests_path,
+          notice: "Sorry, you can't edit/view this Quest")
+      end
+    end
+
+    
     def quest_params
       params.require(:quest).permit(:title, :description, :picture, :gear, :date, :location, :user_id, gear_ids:[], gear_attributes:[:title])
     end

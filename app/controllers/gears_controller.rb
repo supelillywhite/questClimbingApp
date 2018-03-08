@@ -4,13 +4,23 @@ class GearsController < ApplicationController
   # GET /gears
   # GET /gears.json
   def index
-    @gears = current_user.gears
-    @categories = current_user.categories
+    if user_signed_in?
+      @gears = current_user.gears
+      @categories = current_user.categories
+    else
+      redirect_to(root_path,
+        notice: "Sorry, you must log in to create Gear")
+    end
   end
 
   # GET /gears/1
   # GET /gears/1.json
   def show
+    @gear = Gear.find(params[:id])
+    if session[:user_id] != @gear.user_id
+      redirect_to(gears_path,
+        notice: "Sorry, you can't view this Gear Closet")
+    end
   end
 
   # GET /gears/new

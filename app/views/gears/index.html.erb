@@ -27,21 +27,18 @@
     <div class="row row-line">
       <div class="col-md-2">
         <p class="heading-weight">Title:</p>
-        <p><%= gear.title %></p>
+        <p><%= link_to gear.title, gear %></p>
       </div>
       <div class="col-md-3">
         <p class="heading-weight">Description:</p>
         <p><%= gear.description %></p> 
       </div>
-      <div class="col-md-5 pic-center">
+      <div class="col-md-6 pic-center">
         <% if gear.picture != nil %>
           <img src="<%= gear.picture %>", alt="<%= gear.picture %>", width="200px" class="image-border">
         <% else %>
           <p></p>
         <% end %>
-      </div>
-      <div class="col-md-1">
-        <%= link_to 'Show', gear %>
       </div>
     </div>
     
