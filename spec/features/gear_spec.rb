@@ -6,5 +6,10 @@ describe 'navigate' do
       visit gears_path
       expect(page.status_code).to eq(200)
     end
+
+    it 'has a title of Gear' do
+      visit gears_path
+      expect(page).to have_content(/Gear/)
+    end
   end
 end
