@@ -7,7 +7,7 @@ class QuestsController < ApplicationController
       @quests = current_user.quests
     else
       redirect_to(root_path,
-        notice: "Sorry, you must log in to view/edit a Quest")
+        notice: "Sorry, you must log in to view, edit or create a Quest")
     end
   end
 
@@ -63,9 +63,9 @@ class QuestsController < ApplicationController
     end
 
     def check_auth
-      if session[:user_id] != @quest.user_id
+      if current_user.id != @quest.user_id
         redirect_to(quests_path,
-          notice: "Sorry, you can't edit/view this Quest")
+          notice: "Sorry, you must log in to view, edit or create Gear")
       end
     end
 

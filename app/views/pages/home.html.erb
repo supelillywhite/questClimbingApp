@@ -12,7 +12,7 @@
         <p class="heading-weight">Description:</p>
         <p><%= quest.description %></p> 
       </div>
-      <div class="col-md-5 pic-center">
+      <div class="col-md-6 pic-center">
         <% if quest.picture != nil %>
           <img src="<%= quest.picture %>", alt="<%= quest.picture %>", width="375px" class="image-border">
         <% else %>
@@ -22,9 +22,6 @@
       <div class="col-md-1 date-class">
         <p class="heading-weight">Date:</p>
         <p><%= quest.date %></p> 
-      </div>
-      <div class="col-md-1">
-        <%= link_to 'Show', quest %>
       </div>
     </div>
     
