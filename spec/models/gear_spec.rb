@@ -4,9 +4,16 @@ require 'spec_helper'
 RSpec.describe Gear, type: :model do
   describe "Creation" do
     before do
-      @user = User.create(email: "test4@test.com", first_name: "SupeR", last_name: "DLillywhite", username: "Thesupelillywhite", password: "123456", password_confirmation: "123456")
-      @gear = Gear.create(title: "test title", description: "test description", user_id: @user.id)
+      @gear = build(:gear)
     end
+
+    it "has a valid factory" do
+      expect(@gear).to be_valid
+    end
+
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:description) }
+    it { is_expected.to validate_presence_of(:user_id) }
 
     it 'can be created' do
       expect(@gear).to be_valid
@@ -15,7 +22,7 @@ RSpec.describe Gear, type: :model do
     it 'cannot be created without a title, description and user_id' do
       @gear.title = nil
       @gear.description = nil
-      @user.id = nil
+      @gear.user_id = nil
       expect(@gear).to_not be_valid
     end
 
