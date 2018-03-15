@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Gear, type: :model do
   describe "Creation" do
@@ -17,5 +18,6 @@ RSpec.describe Gear, type: :model do
       @user.id = nil
       expect(@gear).to_not be_valid
     end
+
   end
 end
