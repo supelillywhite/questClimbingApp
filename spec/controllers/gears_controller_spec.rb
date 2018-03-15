@@ -26,7 +26,7 @@ RSpec.describe GearsController, type: :controller do
 
   describe "can't DELETE destroy" do
    	login_user
-    it "does not destroy a gear" do
+    it "does not destroy a gear when the user that created it is not logged in" do
       gear = create(:gear)
 
       delete :destroy, params: { id: gear.id }
