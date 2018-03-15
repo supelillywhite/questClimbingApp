@@ -27,4 +27,6 @@ RSpec.describe Gear, type: :model do
     end
 
   end
+
+
 end

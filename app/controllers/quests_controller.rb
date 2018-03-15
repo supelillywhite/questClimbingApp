@@ -15,7 +15,12 @@ class QuestsController < ApplicationController
   end
 
   def new
-    @quest = Quest.new
+    if user_signed_in?
+      @quest = Quest.new
+    else
+      redirect_to(root_path,
+        notice: "Sorry, you must log in to view, edit or create a Quest")
+    end
   end
 
 

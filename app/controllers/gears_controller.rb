@@ -16,7 +16,12 @@ class GearsController < ApplicationController
   end
 
   def new
-    @gear = Gear.new
+    if user_signed_in?
+      @gear = Gear.new
+    else
+      redirect_to(root_path,
+        notice: "Sorry, you must log in to view, edit or create Gear")
+    end
   end
 
   def edit
@@ -51,6 +56,8 @@ class GearsController < ApplicationController
 
   def destroy
     @gear.destroy
+    puts "Destroy"
+    puts @gear
     respond_to do |format|
       format.html { redirect_to gears_url, notice: 'Gear was successfully destroyed.' }
       format.json { head :no_content }
