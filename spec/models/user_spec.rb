@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe "creation" do
     before do
-      @user = User.create(email: "test4@test.com", first_name: "SupeR", last_name: "DLillywhite", username: "Thesupelillywhite", password: "123456", password_confirmation: "123456")
+      @user = build(:user)
+    end
+
+    it "has a valid factory" do
+      expect(@user).to be_valid
     end
 
     it "can be created" do
