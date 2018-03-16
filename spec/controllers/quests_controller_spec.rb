@@ -56,6 +56,32 @@ RSpec.describe QuestsController, type: :controller do
     end
   end
 
+  describe "PATCH update" do
+    login_user
+    it "updates a quest when the user that created it is logged in" do
+      quest = create(:quest, user: @user)
+
+      patch :update, params: { 
+        id: quest.id, quest: { 'title': 'A cup of cheese' } }
+      quest.reload
+
+      expect(quest.title).to eq('A cup of cheese')
+    end
+  end
+
+  describe "can't PATCH update" do
+    login_user
+    it "does not update a gear when the user that created it is not logged in" do
+      quest = create(:quest)
+
+      patch :update, params: { 
+        id: quest.id, quest: { 'title': 'A cup of cheese' } }
+      quest.reload
+
+      expect(quest.title).to_not eq('A cup of cheese')
+    end
+  end
+
 end
 
 

@@ -56,4 +56,33 @@ RSpec.describe GearsController, type: :controller do
     end
   end
 
+  describe "PATCH update" do
+    login_user
+    it "updates a gear when the user that created it is logged in" do
+      gear = create(:gear, user: @user)
+
+      patch :update, params: { 
+        id: gear.id, gear: { 'title': 'A cup of cheese' } }
+      gear.reload
+
+      expect(gear.title).to eq('A cup of cheese')
+    end
+  end
+
+  describe "can't PATCH update" do
+    login_user
+    it "does not update a gear when the user that created it is not logged in" do
+      gear = create(:gear)
+
+      patch :update, params: { 
+        id: gear.id, gear: { 'title': 'A cup of cheese' } }
+      gear.reload
+
+      expect(gear.title).to_not eq('A cup of cheese')
+    end
+  end
+
+
+
 end
+

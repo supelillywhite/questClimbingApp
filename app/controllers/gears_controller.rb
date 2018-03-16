@@ -56,8 +56,6 @@ class GearsController < ApplicationController
 
   def destroy
     @gear.destroy
-    puts "Destroy"
-    puts @gear
     respond_to do |format|
       format.html { redirect_to gears_url, notice: 'Gear was successfully destroyed.' }
       format.json { head :no_content }
