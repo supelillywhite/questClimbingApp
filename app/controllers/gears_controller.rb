@@ -78,3 +78,7 @@ class GearsController < ApplicationController
       params.require(:gear).permit(:title, :description, :picture, :user_id, :date_purchased, category_ids:[], gear_attributes:[:category])
     end
 end
+
+
+
+

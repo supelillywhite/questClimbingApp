@@ -56,6 +56,23 @@ RSpec.describe QuestsController, type: :controller do
     end
   end
 
+  describe "GET index" do
+    login_user
+    it "lists quests when the user that created them is logged in" do
+      get :index
+
+      expect(response).to be_success
+    end
+  end
+
+  describe "can't GET index" do
+    it "lists quests when the user that created them is logged in" do
+      get :index
+
+      expect(response).to_not be_success
+    end
+  end
+
   describe "PATCH update" do
     login_user
     it "updates a quest when the user that created it is logged in" do

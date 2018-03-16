@@ -56,6 +56,23 @@ RSpec.describe GearsController, type: :controller do
     end
   end
 
+  describe "GET index" do
+    login_user
+    it "lists gears when the user that created them is logged in" do
+      get :index
+
+      expect(response).to be_success
+    end
+  end
+
+  describe "can't GET index" do
+    it "lists gears when the user that created them is logged in" do
+      get :index
+
+      expect(response).to_not be_success
+    end
+  end
+
   describe "PATCH update" do
     login_user
     it "updates a gear when the user that created it is logged in" do
@@ -81,8 +98,6 @@ RSpec.describe GearsController, type: :controller do
       expect(gear.title).to_not eq('A cup of cheese')
     end
   end
-
-
 
 end
 
