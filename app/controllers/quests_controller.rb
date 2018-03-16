@@ -35,6 +35,7 @@ class QuestsController < ApplicationController
       if @quest.save
         format.html { redirect_to @quest, notice: 'Quest was successfully created.' }
         format.json { render :show, status: :created, location: @quest }
+        NOTIFIER.ping "This is from the controller"
       else
         format.html { render :new }
         format.json { render json: @quest.errors, status: :unprocessable_entity }
