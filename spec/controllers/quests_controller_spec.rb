@@ -3,12 +3,19 @@ require 'rails_helper'
 RSpec.describe QuestsController, type: :controller do
 
   describe "POST #create" do
-  	login_user
     context "with valid attributes" do
-      it "create new quest" do
-
+      login_user
+      it "creates new quest" do
         post :create, params: {quest: attributes_for(:quest)}
         expect(Quest.count).to eq(1)
+      end
+    end
+
+    context "with missing attributes" do
+      login_user
+      it "does not create create a new quest because description attribute is missing" do
+        post :create, params: { quest: { 'title': 'A cup of cheese' } }
+        expect(Quest.count).to eq(0)
       end
     end
   end

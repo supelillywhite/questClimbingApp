@@ -11,6 +11,14 @@ RSpec.describe GearsController, type: :controller do
         expect(Gear.count).to eq(1)
       end
     end
+
+    context "with missing attributes" do
+      login_user
+      it "does not create create a new gear because description attribute is missing" do
+        post :create, params: { gear: { 'title': 'A cup of cheese' } }
+        expect(Gear.count).to eq(0)
+      end
+    end
   end
 
   describe "DELETE destroy" do
