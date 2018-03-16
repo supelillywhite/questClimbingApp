@@ -33,4 +33,30 @@ RSpec.describe QuestsController, type: :controller do
       expect(Quest.all.size).to eq(1)
     end
   end
+
+  describe "GET Show" do
+    login_user
+    it "shows a quest when the user that created it is logged in" do
+      quest = create(:quest, user: @user)
+
+      get :show, params: { id: quest.id }
+
+      expect(response).to be_success
+    end
+  end
+
+  describe "can't GET Show" do
+    login_user
+    it "does not show a quest when the user that created it is not logged in" do
+      quest = create(:quest)
+
+      get :show, params: { id: quest.id }
+
+      expect(response).to_not be_success
+    end
+  end
+
 end
+
+
+

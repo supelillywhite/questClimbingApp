@@ -13,8 +13,8 @@ RSpec.describe GearsController, type: :controller do
     end
   end
 
-   describe "DELETE destroy" do
-   	login_user
+  describe "DELETE destroy" do
+    login_user
     it "destroys a gear when the user that created it is logged in" do
       gear = create(:gear, user: @user)
 
@@ -33,4 +33,27 @@ RSpec.describe GearsController, type: :controller do
       expect(Gear.all.size).to eq(1)
     end
   end
+
+  describe "GET Show" do
+    login_user
+    it "shows a gear when the user that created it is logged in" do
+      gear = create(:gear, user: @user)
+
+      get :show, params: { id: gear.id }
+
+      expect(response).to be_success
+    end
+  end
+
+  describe "can't GET Show" do
+    login_user
+    it "does not show a gear when the user that created it is not logged in" do
+      gear = create(:gear)
+
+      get :show, params: { id: gear.id }
+
+      expect(response).to_not be_success
+    end
+  end
+
 end
