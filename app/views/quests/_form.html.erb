@@ -27,15 +27,20 @@
   </div>
 
   <div>
-    <%= form.label :date %>
-    <%= form.date_field :date %>
+    <%= form.label :start_date %>
+    <%= form.datetime_select :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date %>
+    <%= form.datetime_select :end_date %>
   </div>
 
   <div class="field">
     <%= form.label :location %>
     <%= form.text_field :location, id: :quest_location %>
   </div>
-  
+
   <div>
     <%= form.collection_check_boxes :gear_ids, current_user.gears, :id, :title %>
   </div>

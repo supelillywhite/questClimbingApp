@@ -10,21 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301013418) do
+ActiveRecord::Schema.define(version: 20190619161729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string "category"
+    t.string "name"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "categories_gears", id: false, force: :cascade do |t|
-    t.bigint "gear_id", null: false
-    t.bigint "category_id", null: false
+  create_table "categories_quests", id: false, force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "quest_id"
+    t.index ["category_id"], name: "index_categories_quests_on_category_id"
+    t.index ["quest_id"], name: "index_categories_quests_on_quest_id"
   end
 
   create_table "gears", force: :cascade do |t|
@@ -33,13 +36,13 @@ ActiveRecord::Schema.define(version: 20180301013418) do
     t.text "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
     t.date "date_purchased"
-  end
-
-  create_table "gears_quests", id: false, force: :cascade do |t|
-    t.bigint "quest_id", null: false
-    t.bigint "gear_id", null: false
+    t.bigint "user_id"
+    t.bigint "category_id"
+    t.bigint "quest_id"
+    t.index ["category_id"], name: "index_gears_on_category_id"
+    t.index ["quest_id"], name: "index_gears_on_quest_id"
+    t.index ["user_id"], name: "index_gears_on_user_id"
   end
 
   create_table "quests", force: :cascade do |t|
@@ -48,9 +51,11 @@ ActiveRecord::Schema.define(version: 20180301013418) do
     t.text "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.date "date"
     t.text "location"
+    t.bigint "user_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.index ["user_id"], name: "index_quests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,4 +78,8 @@ ActiveRecord::Schema.define(version: 20180301013418) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "gears", "categories"
+  add_foreign_key "gears", "quests"
+  add_foreign_key "gears", "users"
+  add_foreign_key "quests", "users"
 end

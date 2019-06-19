@@ -2,9 +2,7 @@
 
 <p>
   <strong>Category(s):</strong>
-  <% @gear.categories.each do |category| %>
-      <p><%= category.category %></p>
-  <% end %>
+  <%= @gear.category.name %>
 </p>
 
 <p>
@@ -34,4 +32,3 @@
 <%= link_to 'Edit', edit_gear_path(@gear) %> |
 <%= link_to 'Back', gears_path %> |
 <%= link_to 'Destroy', gear_path(@gear), method: :delete, data: { confirm: 'Are you sure?' } %>
-

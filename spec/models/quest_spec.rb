@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: quests
+#
+#  id          :bigint           not null, primary key
+#  title       :string
+#  description :text
+#  picture     :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  location    :text
+#  user_id     :bigint
+#  start_date  :datetime
+#  end_date    :datetime
+#
+
 require 'rails_helper'
 
 RSpec.describe Quest, type: :model do

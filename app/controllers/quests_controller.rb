@@ -75,8 +75,8 @@ class QuestsController < ApplicationController
       end
     end
 
-    
+
     def quest_params
-      params.require(:quest).permit(:title, :description, :picture, :gear, :date, :location, :user_id, gear_ids:[], gear_attributes:[:title])
+      params.require(:quest).permit(:title, :description, :picture, :gear, :start_date, :end_date, :location, :user_id, gear_ids:[], gear_attributes:[:title])
     end
 end

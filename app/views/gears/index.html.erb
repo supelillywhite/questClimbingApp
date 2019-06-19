@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Gears</h1>
+<h1>Gear</h1>
 
 <div>
   <%= link_to 'New Gear', new_gear_path %>
@@ -14,7 +14,7 @@
   </div>
   <div>
     <% @categories.each do |category| %>
-      <%= link_to "#{category.category}", category_path(category.id) %>
+      <%= link_to "#{category.name}", category_path(category.id) %>
     <% end %>
   </div>
 </div>
@@ -31,7 +31,7 @@
       </div>
       <div class="col-md-3">
         <p class="heading-weight">Description:</p>
-        <p><%= gear.description %></p> 
+        <p><%= gear.description %></p>
       </div>
       <div class="col-md-6 pic-center">
         <% if gear.picture != nil %>
@@ -41,10 +41,7 @@
         <% end %>
       </div>
     </div>
-    
+
   <% end %>
 
 </div>
-
-
-

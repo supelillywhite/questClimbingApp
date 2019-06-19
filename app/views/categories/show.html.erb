@@ -2,7 +2,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @category.category %>
+  <%= @category.name %>
 </p>
 
 <p>
@@ -15,7 +15,7 @@
       </div>
       <div class="col-md-3">
         <p class="heading-weight">Description:</p>
-        <p><%= gear.description %></p> 
+        <p><%= gear.description %></p>
       </div>
       <div class="col-md-5 pic-center">
         <% if gear.picture != nil %>

@@ -18,6 +18,7 @@ class GearsController < ApplicationController
   def new
     if user_signed_in?
       @gear = Gear.new
+      @categories = current_user.categories
     else
       redirect_to(root_path,
         notice: "Sorry, you must log in to view, edit or create Gear")
@@ -29,6 +30,7 @@ class GearsController < ApplicationController
 
   def create
     @gear = Gear.new(gear_params)
+    @categories = current_user.categories
     @gear.user_id = current_user.id
 
     respond_to do |format|
@@ -75,10 +77,14 @@ class GearsController < ApplicationController
     end
 
     def gear_params
-      params.require(:gear).permit(:title, :description, :picture, :user_id, :date_purchased, category_ids:[], gear_attributes:[:category])
+      params.require(:gear).permit(
+        :title,
+        :description,
+        :picture,
+        :user_id,
+        :date_purchased,
+        :category_id,
+        gear_attributes: [:category]
+      )
     end
 end
-
-
-
-

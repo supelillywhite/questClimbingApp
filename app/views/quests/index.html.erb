@@ -4,10 +4,6 @@
 
 <%= link_to 'New Quest', new_quest_path %>
 
-<script>
-  alert( 'Welcome to Your Quests!' );
-</script>
-
 <div>
   <% if @quests.size == 0 %>
     <em>You have no quests yet!</em>
@@ -21,7 +17,7 @@
       </div>
       <div class="col-md-3">
         <p class="heading-weight">Description:</p>
-        <p><%= quest.description %></p> 
+        <p><%= quest.description %></p>
       </div>
       <div class="col-md-6 pic-center">
         <% if quest.picture != nil %>
@@ -31,16 +27,13 @@
         <% end %>
       </div>
       <div class="col-md-1 date-class">
-        <p class="heading-weight">Date:</p>
-        <p><%= quest.date %></p> 
+        <p class="heading-weight">Start Date:</p>
+        <%= quest.start_date %>
+        <p class="heading-weight">End Date:</p>
+        <%= quest.end_date %>
       </div>
     </div>
-    
+
   <% end %>
 
 </div>
-
-
-
-
-
