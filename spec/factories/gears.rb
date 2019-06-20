@@ -11,7 +11,8 @@
 #  date_purchased :date
 #  user_id        :bigint
 #  category_id    :bigint
-#  quest_id       :bigint
+#  checked_out    :boolean          default(FALSE)
+#  checked_out_to :integer
 #
 
 FactoryBot.define do

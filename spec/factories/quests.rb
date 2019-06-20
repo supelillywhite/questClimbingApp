@@ -19,5 +19,7 @@ FactoryBot.define do
 		title { Faker::Hobbit.character }
     description { Faker::LordOfTheRings.location }
     association :user
+		start_date DateTime.new(2019,6,19,4,5,6)
+		end_date DateTime.new(2019,6,20,4,5,6)
   end
 end

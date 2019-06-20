@@ -45,7 +45,11 @@ class QuestsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @quest.update(quest_params)
+      @quest.assign_attributes(quest_params)
+      (@quest.gears.select(&:checked_out).select { |gear| gear.checked_out_to == nil }).each do |gear|
+        gear.checked_out_to = @quest.id
+      end
+      if @quest.save
         format.html { redirect_to @quest, notice: 'Quest was successfully updated.' }
         format.json { render :show, status: :ok, location: @quest }
       else
@@ -77,6 +81,17 @@ class QuestsController < ApplicationController
 
 
     def quest_params
-      params.require(:quest).permit(:title, :description, :picture, :gear, :start_date, :end_date, :location, :user_id, gear_ids:[], gear_attributes:[:title])
+      params.require(:quest).permit(
+        :title,
+        :description,
+        :picture,
+        :gear,
+        :start_date,
+        :end_date,
+        :location,
+        :user_id,
+        gear_ids: [],
+        gears_attributes: [:id, :title, :checked_out, :checked_out_to]
+      )
     end
 end

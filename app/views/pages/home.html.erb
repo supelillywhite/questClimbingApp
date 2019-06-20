@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-3">
         <p class="heading-weight">Description:</p>
-        <p><%= quest.description %></p> 
+        <p><%= quest.description %></p>
       </div>
       <div class="col-md-6 pic-center">
         <% if quest.picture != nil %>
@@ -20,11 +20,13 @@
         <% end %>
       </div>
       <div class="col-md-1 date-class">
-        <p class="heading-weight">Date:</p>
-        <p><%= quest.date %></p> 
+        <p class="heading-weight">Start Date:</p>
+        <p><%= quest.start_date %></p>
+        <p class="heading-weight">End Date:</p>
+        <p><%= quest.end_date %></p> 
       </div>
     </div>
-    
+
   <% end %>
 
 </div>

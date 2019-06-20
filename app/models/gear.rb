@@ -11,12 +11,21 @@
 #  date_purchased :date
 #  user_id        :bigint
 #  category_id    :bigint
-#  quest_id       :bigint
+#  checked_out    :boolean          default(FALSE)
+#  checked_out_to :integer
 #
 
 class Gear < ApplicationRecord
   belongs_to :user
-  belongs_to :quest, optional: true
+  has_and_belongs_to_many :quests
   belongs_to :category
   validates_presence_of :title, :description, :user_id
+
+  def packed(quest_id)
+    if checked_out && quest_id == checked_out_to
+      "(packed)"
+    else
+      "(unpacked)"
+    end
+  end
 end

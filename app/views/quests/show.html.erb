@@ -37,7 +37,7 @@
 <p>
   <strong>Gear:</strong>
   <% @quest.gears.each do |gear| %>
-    <p><%= gear.title %></p>
+    <p><%= "#{gear.title} #{gear.packed(@quest.id)}" %></p>
   <% end %>
 </p>
 

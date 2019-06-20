@@ -26,6 +26,7 @@ class GearsController < ApplicationController
   end
 
   def edit
+    @categories = current_user.categories
   end
 
   def create
@@ -84,6 +85,7 @@ class GearsController < ApplicationController
         :user_id,
         :date_purchased,
         :category_id,
+        :checked_out,
         gear_attributes: [:category]
       )
     end
